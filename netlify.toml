@@ -1,0 +1,23 @@
+# Configuration Netlify — site vitrine Synaps
+# Site statique mono-fichier (index.html), pas d'étape de build.
+
+[build]
+  publish = "."
+  command = ""
+
+# Chaque landing page a une vraie URL ; tout est servi par index.html.
+# Le code JS lit location.pathname au chargement pour afficher la bonne page
+# (deep-link depuis une campagne publicitaire).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# En-têtes de sécurité (audience médicale, données patients).
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

@@ -4,6 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Synaps — Des outils pensés avec les laboratoires, pour les laboratoires</title>
+<meta name="description" content="Des outils simples pour les laboratoires de biologie médicale, qui s'installent un par un, sans migration et sans risque. Diagnostic offert.">
+<link rel="canonical" href="https://hemo-labs.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Synaps">
+<meta property="og:title" content="Synaps — Des outils pensés avec les laboratoires">
+<meta property="og:description" content="Des outils simples pour les laboratoires de biologie médicale, sans migration et sans risque. Diagnostic offert.">
+
+<!-- Google Analytics 4 (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KWJ8NEV7ZJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  // send_page_view:false — on envoie une vue par page nous-mêmes (navigation SPA)
+  gtag('config', 'G-KWJ8NEV7ZJ', {send_page_view:false});
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -203,6 +221,12 @@
   .foot-col a:hover{color:#fff}
   .foot-bottom{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:#7DA0AD;font-size:12.5px}
 
+  .fld{display:block;margin-bottom:13px}
+  .fld span{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin-bottom:6px}
+  .fld input,.fld textarea{width:100%;font-family:'Inter';font-size:14.5px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:11px 13px;transition:.15s;resize:vertical}
+  .fld input:focus,.fld textarea:focus{outline:none;border-color:var(--emerald);background:var(--card);box-shadow:0 0 0 3px var(--emerald-soft)}
+  .fld input::placeholder,.fld textarea::placeholder{color:var(--muted)}
+
   @media(max-width:880px){
     .hero-grid,.phero-grid,.whisper-in{grid-template-columns:1fr}
     .tools,.feat,.kpis,.steps{grid-template-columns:1fr}
@@ -302,7 +326,7 @@
     <div class="wrap">
       <div class="diag" id="diag">
         <div><span class="eyebrow">Le point de départ</span><h2>On regarde vos chiffres. On vous montre ce qui vous échappe. C'est offert.</h2><p>On analyse votre activité et votre facturation, et on vous remet un constat clair — le vôtre. Ce que vous en faites ensuite ne dépend que de vous.</p></div>
-        <div><button class="btn">Demander mon diagnostic</button></div>
+        <div><button class="btn" onclick="goDiag()">Demander mon diagnostic</button></div>
       </div>
     </div>
   </section>
@@ -539,6 +563,49 @@
   </section>
 </div>
 
+<div class="page" id="page-diagnostic">
+  <header class="phero">
+    <div class="wrap">
+      <span class="pback" onclick="go('home')">← Retour à l'accueil</span>
+      <div class="phero-grid">
+        <div>
+          <span class="eyebrow">Le diagnostic offert</span>
+          <h1>On regarde vos chiffres avec vous. C'est offert.</h1>
+          <p class="lead">Laissez-nous quelques informations et un membre de notre équipe vous rappelle — en français, simplement. Pas d'engagement, pas d'automate : un vrai échange pour comprendre votre laboratoire.</p>
+          <div class="reassure">
+            <span><span class="ck">✓</span> Réponse sous 48 h ouvrées</span>
+            <span><span class="ck">✓</span> Sans engagement</span>
+          </div>
+        </div>
+        <div class="vcard">
+          <div class="vtop"><span>DEMANDE DE DIAGNOSTIC</span><span style="color:var(--emerald);font-weight:600">● offert</span></div>
+
+          <form name="diagnostic" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="diag-form" onsubmit="return submitDiag(event)">
+            <input type="hidden" name="form-name" value="diagnostic">
+            <input type="hidden" name="page-source" id="diag-source" value="">
+            <p style="display:none"><label>Ne pas remplir : <input name="bot-field"></label></p>
+
+            <label class="fld"><span>Votre nom</span><input name="nom" required placeholder="Dr ..."></label>
+            <label class="fld"><span>Nom du laboratoire</span><input name="laboratoire" required placeholder="Laboratoire ..."></label>
+            <label class="fld"><span>Wilaya</span><input name="wilaya" required placeholder="Alger, Oran, ..."></label>
+            <label class="fld"><span>Téléphone</span><input name="telephone" type="tel" required placeholder="0X XX XX XX XX"></label>
+            <label class="fld"><span>Un mot sur votre besoin <em style="color:var(--muted);font-style:normal">(facultatif)</em></span><textarea name="message" rows="2" placeholder="Ce qui vous préoccupe en ce moment..."></textarea></label>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:6px">Demander mon diagnostic offert</button>
+            <div style="font-size:11.5px;color:var(--muted);margin-top:12px;text-align:center">Vos données restent confidentielles et ne servent qu'à vous recontacter.</div>
+          </form>
+
+          <div id="diag-thanks" style="display:none;text-align:center;padding:24px 8px">
+            <div style="font-size:40px">✓</div>
+            <h4 style="font-family:'Fraunces';font-size:21px;margin:10px 0 8px">Merci, c'est noté.</h4>
+            <p style="color:var(--ink-soft);font-size:14.5px">Un membre de notre équipe vous rappelle très vite. À bientôt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+
 <footer>
   <div class="wrap">
     <div class="foot-in">
@@ -555,14 +622,67 @@
 </footer>
 
 <script>
-  const pages=['home','middleware','dashboard','assistant','site','lis'];
-  function go(p){
-    pages.forEach(x=>document.getElementById('page-'+x).classList.toggle('on',x===p));
+  // Chaque page = une vraie URL (attribution par landing page).
+  // path <-> id de page ; titre + description pour le partage et le SEO.
+  const PAGES={
+    home:       {path:'/',                 title:'Synaps — Des outils pensés avec les laboratoires, pour les laboratoires', desc:"Des outils simples pour les laboratoires de biologie médicale, sans migration et sans risque. Diagnostic offert."},
+    middleware: {path:'/suivi-analyseurs',  title:'Suivi des analyseurs — Synaps', desc:"Suivez vos automates en continu : pannes, calibrations, contrôles qualité, débit. Sans migration."},
+    dashboard:  {path:'/pilotage',          title:'Pilotage & délais de rendu — Synaps', desc:"Vos indicateurs réunis, des alertes au bon moment, de la capacité gagnée sans nouvel automate."},
+    assistant:  {path:'/assistant',         title:"Assistant de l'équipe — Synaps", desc:"Un appui quotidien pour votre équipe : procédures, lecture des ordonnances, formation."},
+    site:       {path:'/site-rendez-vous',  title:'Site web + rendez-vous (offert) — Synaps', desc:"Nous créons gratuitement votre page et votre système de prise de rendez-vous en ligne."},
+    lis:        {path:'/systeme-sgl',       title:'Système complet (SGL) — Synaps', desc:"Le système de gestion de laboratoire le plus fiable, ou nous vous remboursons. À votre rythme."},
+    diagnostic: {path:'/diagnostic',        title:'Diagnostic offert — Synaps', desc:"Demandez votre diagnostic offert. Un membre de l'équipe vous rappelle, sans engagement."}
+  };
+  const PATH2ID=Object.fromEntries(Object.entries(PAGES).map(([id,m])=>[m.path,id]));
+
+  function render(p){
+    Object.keys(PAGES).forEach(x=>document.getElementById('page-'+x).classList.toggle('on',x===p));
     document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.getAttribute('data-nav')===p));
     document.getElementById('navlinks').classList.remove('open');
+    const m=PAGES[p];
+    document.title=m.title;
+    document.querySelector('meta[name="description"]').setAttribute('content',m.desc);
+    document.querySelector('link[rel="canonical"]').setAttribute('href','https://hemo-labs.com'+m.path);
+    // vue de page virtuelle pour GA4
+    if(window.gtag) gtag('event','page_view',{page_path:m.path,page_title:m.title});
+  }
+
+  // Navigation : met à jour l'URL (History API) puis affiche la page.
+  function go(p){
+    if(!PAGES[p]) p='home';
+    history.pushState({p},'',PAGES[p].path);
+    render(p);
     window.scrollTo({top:0,behavior:'instant'});
   }
-  function goDiag(){go('home');setTimeout(()=>document.getElementById('diag').scrollIntoView({behavior:'smooth'}),70);}
+
+  function goDiag(){
+    if(window.gtag) gtag('event','cta_diagnostic',{source:document.getElementById('page-diagnostic').classList.contains('on')?'diagnostic':(currentId()||'home')});
+    document.getElementById('diag-source').value=currentId()||'home';
+    go('diagnostic');
+  }
+
+  function currentId(){ return PATH2ID[location.pathname]||'home'; }
+
+  // Bouton précédent/suivant du navigateur
+  window.addEventListener('popstate',()=>render(currentId()));
+
+  // Affichage initial selon l'URL demandée (deep-link depuis une pub)
+  render(currentId());
+
+  // Envoi du formulaire en AJAX vers Netlify Forms (reste sur la page).
+  function submitDiag(e){
+    e.preventDefault();
+    const form=e.target;
+    const data=new URLSearchParams(new FormData(form)).toString();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data})
+      .then(()=>{
+        form.style.display='none';
+        document.getElementById('diag-thanks').style.display='block';
+        if(window.gtag) gtag('event','generate_lead',{source:document.getElementById('diag-source').value});
+      })
+      .catch(()=>{ form.querySelector('button[type=submit]').textContent='Réessayez, l’envoi a échoué'; });
+    return false;
+  }
 </script>
 </body>
 </html>
