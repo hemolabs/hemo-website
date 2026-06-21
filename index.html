@@ -22,6 +22,14 @@
   gtag('config', 'G-KWJ8NEV7ZJ', {send_page_view:false});
 </script>
 
+<!-- 3 designs : applique le thème demandé (?design=clair|rassurant) avant le rendu -->
+<script>
+  (function(){
+    var d=new URLSearchParams(location.search).get('design');
+    if(d==='clair'||d==='rassurant') document.documentElement.setAttribute('data-theme',d);
+  })();
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -227,6 +235,22 @@
   .fld input:focus,.fld textarea:focus{outline:none;border-color:var(--emerald);background:var(--card);box-shadow:0 0 0 3px var(--emerald-soft)}
   .fld input::placeholder,.fld textarea::placeholder{color:var(--muted)}
 
+  .econote{background:var(--emerald-soft);border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-top:26px;font-size:14.5px;color:var(--ink-soft)}
+  .econote b{color:var(--ink)}
+  .proofnote{margin-top:16px;font-size:13px;color:var(--muted);border-left:3px solid var(--amber);padding-left:14px}
+  .microcta{margin-top:14px;font-size:13.5px;color:var(--muted)}
+  .microcta a{color:var(--blue);font-weight:600;cursor:pointer}
+  .microcta a:hover{text-decoration:underline}
+
+  .ctarow{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .callnote{display:block;margin-top:12px;font-size:13.5px;color:var(--ink-soft)}
+  .callnote a{color:var(--blue);font-weight:600}
+  .tcheck{list-style:none;display:grid;gap:12px;margin:6px 0 0;max-width:780px}
+  .tcheck li{display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--ink-soft)}
+  .tcheck .ic{width:20px;height:20px;border-radius:50%;background:var(--emerald-soft);color:var(--emerald);display:grid;place-items:center;font-size:12px;font-weight:700;flex:0 0 auto;margin-top:1px}
+  .tlead{font-family:'Fraunces';font-size:22px;margin:48px 0 16px;color:var(--ink)}
+  .reserved{margin-top:16px;font-size:13px;color:var(--muted);border-left:3px solid var(--amber);padding-left:14px}
+
   @media(max-width:880px){
     .hero-grid,.phero-grid,.whisper-in{grid-template-columns:1fr}
     .tools,.feat,.kpis,.steps{grid-template-columns:1fr}
@@ -237,6 +261,61 @@
     .nav-links a{padding:12px 8px}
     .burger{display:block}
   }
+
+  /* ============================================================
+     3 DESIGNS commutables — ?design=chaleureux|clair|rassurant
+     Base (sans attribut) = CHALEUREUX. Voir le sélecteur en bas.
+     ============================================================ */
+
+  /* ---- CLAIR : blanc, grandes lettres, à plat, beaucoup d'air ---- */
+  [data-theme="clair"]{--paper:#FFFFFF;--paper-2:#F7F4EE;--card:#FFFFFF;--line:#EAE3D6;--line-soft:#F2ECE0;--shadow:0 1px 2px rgba(28,43,51,.04)}
+  [data-theme="clair"] body{font-size:16.5px}
+  [data-theme="clair"] .hero h1{font-size:clamp(38px,6vw,64px)}
+  [data-theme="clair"] .phero h1{font-size:clamp(32px,5vw,54px)}
+  [data-theme="clair"] nav{background:rgba(255,255,255,.92)}
+  [data-theme="clair"] .tool,[data-theme="clair"] .hero-card,[data-theme="clair"] .vcard,[data-theme="clair"] .human,[data-theme="clair"] .pc{box-shadow:none}
+  [data-theme="clair"] .tool:hover{transform:none;box-shadow:none;border-color:var(--blue)}
+  [data-theme="clair"] .trust{background:#fff}
+  [data-theme="clair"] .nomig{background:transparent;border:1px solid var(--line);color:var(--ink-soft)}
+  [data-theme="clair"] section.block{padding:84px 0}
+
+  /* ---- RASSURANT : bandeaux bleus, badges, structure institutionnelle ---- */
+  [data-theme="rassurant"] nav{background:var(--blue-deep)}
+  [data-theme="rassurant"] .brand{color:#fff}
+  [data-theme="rassurant"] .brand .mark{background:#fff}
+  [data-theme="rassurant"] .brand .mark::before,[data-theme="rassurant"] .brand .mark::after{background:var(--blue-deep)}
+  [data-theme="rassurant"] .burger{color:#fff}
+  [data-theme="rassurant"] .nav-links a{color:#CFE0E6}
+  [data-theme="rassurant"] .nav-links a:hover{color:#fff;background:rgba(255,255,255,.10)}
+  [data-theme="rassurant"] .nav-links a.active{color:#fff;background:rgba(255,255,255,.16)}
+  [data-theme="rassurant"] .nav-cta{background:#fff!important;color:var(--blue)!important}
+  [data-theme="rassurant"] .nav-cta:hover{background:var(--paper)!important}
+  [data-theme="rassurant"] .hero,[data-theme="rassurant"] .phero{background:var(--blue);color:#fff;border-bottom:4px solid var(--blue-deep)}
+  [data-theme="rassurant"] .hero h1,[data-theme="rassurant"] .phero h1{color:#fff}
+  [data-theme="rassurant"] .hero h1 em{color:#BFE0EA}
+  [data-theme="rassurant"] .hero .lead,[data-theme="rassurant"] .phero .lead{color:#D7E6EC}
+  [data-theme="rassurant"] .hero .eyebrow,[data-theme="rassurant"] .phero .eyebrow{color:#A7CCDA}
+  [data-theme="rassurant"] .pback{color:#BFD6DF}
+  [data-theme="rassurant"] .hero .btn-primary,[data-theme="rassurant"] .phero .btn-primary{background:#fff;color:var(--blue)}
+  [data-theme="rassurant"] .hero .btn-primary:hover,[data-theme="rassurant"] .phero .btn-primary:hover{background:var(--paper)}
+  [data-theme="rassurant"] .hero .btn-ghost,[data-theme="rassurant"] .phero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45)}
+  [data-theme="rassurant"] .hero .btn-ghost:hover,[data-theme="rassurant"] .phero .btn-ghost:hover{border-color:#fff;color:#fff}
+  [data-theme="rassurant"] .hero .nomig,[data-theme="rassurant"] .phero .nomig{background:rgba(255,255,255,.14);color:#fff}
+  [data-theme="rassurant"] .hero .nomig .d,[data-theme="rassurant"] .phero .nomig .d{background:#fff}
+  [data-theme="rassurant"] .reassure span{color:#D7E6EC}
+  [data-theme="rassurant"] .reassure .ck{background:rgba(255,255,255,.18);color:#fff}
+  [data-theme="rassurant"] .microcta{color:#D7E6EC}
+  [data-theme="rassurant"] .microcta a{color:#fff}
+  [data-theme="rassurant"] .hero .callnote,[data-theme="rassurant"] .phero .callnote{color:#D7E6EC}
+  [data-theme="rassurant"] .hero .callnote a,[data-theme="rassurant"] .phero .callnote a{color:#fff}
+  [data-theme="rassurant"] .fcell{border-top-color:var(--emerald)}
+
+  /* ---- Sélecteur de design (prévisualisation — à retirer en production) ---- */
+  .switcher{position:fixed;right:16px;bottom:16px;z-index:99;display:flex;gap:6px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:30px;padding:6px 8px 6px 14px;box-shadow:0 8px 30px -12px rgba(28,43,51,.4);font-size:12.5px}
+  .switcher b{color:var(--muted);font-weight:600;font-family:'Inter',sans-serif}
+  .switcher button{border:0;background:var(--paper-2);color:var(--ink-soft);font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;padding:7px 12px;border-radius:20px;cursor:pointer}
+  .switcher button.on{background:var(--blue);color:#fff}
+  @media(max-width:560px){.switcher b{display:none}}
 </style>
 </head>
 <body>
@@ -261,17 +340,18 @@
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">Des outils pour les laboratoires de biologie médicale</span>
-        <h1>Nous avançons <em>avec vous</em>, à votre rythme.</h1>
-        <p class="lead">Des outils simples qui s'installent un par un, là où votre laboratoire en a besoin, sans rien changer à votre système actuel. Vous commencez par un, vous voyez le résultat de vos propres yeux, et vous décidez de la suite.</p>
+        <h1>Récupérez le <em>temps et l'argent</em> qui s'échappent de votre laboratoire.</h1>
+        <p class="lead">Des outils simples qui s'installent un par un, sans rien changer à votre système actuel. Vous commencez par un, vous voyez le résultat, vous décidez de la suite.</p>
         <div class="btn-row">
           <button class="btn btn-primary" onclick="goDiag()">Demander un diagnostic offert</button>
           <button class="btn btn-ghost" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'})">Découvrir les outils</button>
         </div>
         <div class="reassure">
-          <span><span class="ck">✓</span> Conforme ISO 15189 &amp; GBEA</span>
+          <span><span class="ck">✓</span> Conçu pour votre démarche ISO 15189 &amp; GBEA</span>
           <span><span class="ck">✓</span> Sans migration</span>
           <span><span class="ck">✓</span> Un interlocuteur, pas un automate</span>
         </div>
+        <div class="microcta">Pas prêt pour le diagnostic ? <a onclick="go('site')">Commencez par votre site web gratuit →</a></div>
       </div>
       <div class="hero-card">
         <div class="hc-top"><span class="hc-title">Votre laboratoire, d'un coup d'œil</span><span class="hc-live"><span class="d"></span>en direct</span></div>
@@ -298,15 +378,15 @@
       <div class="sec-head">
         <span class="eyebrow">Les outils</span>
         <h2>Chacun résout un vrai souci du quotidien.</h2>
-        <p>Installez celui qui vous parle le plus. Ajoutez les autres quand vous le souhaitez. Tous fonctionnent ensemble — et avec votre système actuel.</p>
+        <p>Installez celui qui vous parle. Ajoutez les autres quand vous voulez — tous fonctionnent avec votre système actuel.</p>
       </div>
       <div class="tools">
-        <div class="tool" onclick="go('middleware')"><span class="ic">🔬</span><h3>Suivi des analyseurs</h3><p>Une vue claire et continue sur vos automates : pannes, calibrations, contrôles qualité, débit. Vous agissez avant que cela ne vous coûte.</p><span class="go">En savoir plus →</span></div>
-        <div class="tool" onclick="go('dashboard')"><span class="ic">📊</span><h3>Pilotage &amp; délais de rendu</h3><p>Vos indicateurs réunis au même endroit, des alertes au bon moment. Vous voyez où le temps se perd, et vous gagnez en capacité.</p><span class="go">En savoir plus →</span></div>
-        <div class="tool" onclick="go('assistant')"><span class="ic">💬</span><h3>Assistant de l'équipe</h3><p>Il répond aux questions, déchiffre les ordonnances, forme vos collaborateurs et accompagne les nouvelles recrues. Un appui de tous les jours.</p><span class="go">En savoir plus →</span></div>
-        <div class="tool offered" onclick="go('site')"><span class="tag">Offert</span><span class="ic">🌐</span><h3>Site web + rendez-vous</h3><p>Nous créons gratuitement votre page et votre système de prise de rendez-vous en ligne. Moins de rendez-vous manqués, des patients mieux accueillis.</p><span class="go">En savoir plus →</span></div>
-        <div class="tool" onclick="go('lis')"><span class="ic">🏛️</span><h3>Système complet (SGL)</h3><p>Le jour où vous serez prêt : un système de gestion de laboratoire pensé pour la fiabilité. Disponibilité garantie — sinon, nous vous remboursons.</p><span class="go">En savoir plus →</span></div>
-        <div class="tool soon"><span class="tag" style="color:var(--blue);background:var(--emerald-soft)">Bientôt</span><span class="ic" style="background:var(--paper-2)">🤝</span><h3>Réseau de laboratoires</h3><p>Prescripteurs connectés, sous-traitance, achats groupés entre confrères. Votre activité s'étend au-delà de vos murs.</p><span class="go" style="color:var(--muted)">En préparation</span></div>
+        <div class="tool" onclick="go('middleware')"><span class="ic">🔬</span><h3>Suivi des analyseurs</h3><p>Une vue claire sur vos automates : pannes, calibrations, qualité, débit. Vous agissez avant que ça ne coûte.</p><span class="go">En savoir plus →</span></div>
+        <div class="tool" onclick="go('dashboard')"><span class="ic">📊</span><h3>Pilotage &amp; délais de rendu</h3><p>Vos indicateurs réunis, des alertes au bon moment — sur un site comme sur plusieurs. Vous voyez où le temps se perd.</p><span class="go">En savoir plus →</span></div>
+        <div class="tool" onclick="go('assistant')"><span class="ic">💬</span><h3>Assistant de l'équipe</h3><p>Il répond aux questions, déchiffre les ordonnances, forme l'équipe. Un appui de tous les jours.</p><span class="go">En savoir plus →</span></div>
+        <div class="tool offered" onclick="go('site')"><span class="tag">Offert</span><span class="ic">🌐</span><h3>Site web + rendez-vous</h3><p>Nous créons gratuitement votre page et vos rendez-vous en ligne. Moins de rendez-vous manqués.</p><span class="go">En savoir plus →</span></div>
+        <div class="tool" onclick="go('lis')"><span class="ic">🏛️</span><h3>Système complet (SGL)</h3><p>Le jour où vous serez prêt : un SGL pensé pour la fiabilité. Disponibilité garantie, sinon remboursé.</p><span class="go">En savoir plus →</span></div>
+        <div class="tool soon"><span class="tag" style="color:var(--blue);background:var(--emerald-soft)">Bientôt</span><span class="ic" style="background:var(--paper-2)">🤝</span><h3>Réseau de laboratoires</h3><p>Prescripteurs connectés, sous-traitance, achats groupés. Votre activité s'étend au-delà de vos murs.</p><span class="go" style="color:var(--muted)">En préparation</span></div>
       </div>
     </div>
   </section>
@@ -315,8 +395,8 @@
     <div class="wrap">
       <div class="sec-head center"><span class="eyebrow blue">Comment ça se passe</span><h2>Simple, prudent, sans engagement de départ.</h2></div>
       <div class="steps">
-        <div class="step"><div class="sn">1</div><h4>On échange</h4><p>Un membre de notre équipe vient comprendre votre laboratoire, vos contraintes, vos priorités. Sans jargon.</p></div>
-        <div class="step"><div class="sn">2</div><h4>On vous montre</h4><p>On installe un outil, ou on réalise un diagnostic offert de votre activité. Vous voyez le résultat sur vos propres chiffres.</p></div>
+        <div class="step"><div class="sn">1</div><h4>On échange</h4><p>On vient comprendre votre laboratoire, vos contraintes, vos priorités. Sans jargon.</p></div>
+        <div class="step"><div class="sn">2</div><h4>On vous montre</h4><p>On installe un outil ou on réalise un diagnostic offert. Vous voyez le résultat sur vos propres chiffres.</p></div>
         <div class="step"><div class="sn">3</div><h4>Vous décidez</h4><p>Satisfait, on avance ensemble vers la suite. Sinon, on s'arrête là. C'est vous qui menez.</p></div>
       </div>
     </div>
@@ -325,25 +405,29 @@
   <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="diag" id="diag">
-        <div><span class="eyebrow">Le point de départ</span><h2>On regarde vos chiffres. On vous montre ce qui vous échappe. C'est offert.</h2><p>On analyse votre activité et votre facturation, et on vous remet un constat clair — le vôtre. Ce que vous en faites ensuite ne dépend que de vous.</p></div>
+        <div><span class="eyebrow">Le point de départ</span><h2>On regarde vos chiffres. On vous montre ce qui vous échappe. C'est offert.</h2><p>On analyse votre activité et votre facturation, et on vous remet un constat clair — le vôtre. Vous gardez le constat ; libre à vous d'aller plus loin, ou non. Sans commission sur vos recettes.</p></div>
         <div><button class="btn" onclick="goDiag()">Demander mon diagnostic</button></div>
       </div>
+      <div class="proofnote" style="margin-top:18px">Premiers laboratoires partenaires en cours d'installation — leurs retours, avec leur wilaya, seront publiés ici.</div>
     </div>
   </section>
 
   <section class="block" style="padding-top:0">
     <div class="wrap">
       <div class="human">
-        <div class="av">SM</div>
-        <div class="ht"><h4>Une question ? Parlez à quelqu'un, pas à un formulaire.</h4><p>Nous prenons le temps d'échanger avec chaque laboratoire, en français, simplement. Appelez-nous ou laissez-nous un message — un membre de l'équipe vous répond personnellement.</p></div>
-        <button class="btn btn-emerald" onclick="goDiag()">Nous contacter</button>
+        <div class="av">✆</div>
+        <div class="ht"><h4>Une question ? Parlons-en directement.</h4><p>Réservez un appel au moment qui vous arrange, ou laissez-nous vos coordonnées : une vraie personne vous recontacte sous 48 h, en français. Pas de standard, pas de relance automatique.</p><span data-contact-slot class="callnote"></span></div>
+        <div class="ctarow">
+          <button class="btn btn-emerald" onclick="book('home')">Réserver un appel</button>
+          <button class="btn btn-ghost" onclick="goDiag()">Être recontacté</button>
+        </div>
       </div>
     </div>
   </section>
 
   <div class="whisper">
     <div class="wrap whisper-in">
-      <div><span class="eyebrow amber">À plus long terme</span><h3>Et un jour, si vous le souhaitez, tout le système.</h3><p>Nos outils fonctionnent avec votre système actuel. Ce sont aussi les briques d'un ensemble complet, jusqu'au système de gestion de laboratoire. Vous y viendrez quand vous l'aurez décidé — jamais avant.</p></div>
+      <div><span class="eyebrow amber">À plus long terme</span><h3>Et un jour, si vous le souhaitez, tout le système.</h3><p>Nos outils fonctionnent avec votre système actuel — et forment les briques d'un ensemble complet, jusqu'au SGL. Vous y viendrez quand vous l'aurez décidé.</p></div>
       <button class="btn btn-ghost" onclick="go('lis')">Découvrir le système Synaps →</button>
     </div>
   </div>
@@ -356,13 +440,17 @@
       <div class="phero-grid">
         <div>
           <span class="eyebrow amber">Outil · Production</span>
-          <h1>Vos analyseurs tombent en panne sans prévenir ?</h1>
-          <p class="lead">La maintenance et les arrêts d'automates sont la première difficulté citée par les responsables de laboratoire. Synaps suit vos analyseurs en continu et vous donne une vue claire — pannes, calibrations, contrôles qualité, débit. Vous agissez avant que cela ne vous coûte.</p>
-          <button class="btn btn-primary" onclick="goDiag()">Voir mes analyseurs en direct</button>
-          <div><span class="nomig"><span class="d"></span> Se branche sur vos automates. Aucune migration.</span></div>
+          <h1>Une panne d'automate ne vous coûtera plus une journée.</h1>
+          <p class="lead">On garde un œil sur vos machines et on vous prévient avant la panne. Rien à installer, rien à changer.</p>
+          <div class="ctarow">
+            <button class="btn btn-primary" onclick="book('middleware')">Réserver un appel</button>
+            <button class="btn btn-ghost" onclick="goDiag()">Être rappelé</button>
+          </div>
+          <span data-contact-slot class="callnote"></span>
+          <div><span class="nomig"><span class="d"></span> On se branche sur vos machines. On regarde, on ne touche à rien.</span></div>
         </div>
         <div class="vcard">
-          <div class="vtop"><span>VOS AUTOMATES · TEMPS RÉEL</span><span style="color:var(--emerald);font-weight:600">● en direct</span></div>
+          <div class="vtop"><span>VOS AUTOMATES · TEMPS RÉEL · exemple</span><span style="color:var(--emerald);font-weight:600">● en direct</span></div>
           <div class="mrow"><span class="heart"></span><div style="flex:1"><div class="mname">Cobas 6000 · Biochimie</div><div class="mstat">Contrôle qualité OK · 142 tests/h</div></div><span class="pill ok">nominal</span></div>
           <div class="mrow"><span class="heart"></span><div style="flex:1"><div class="mname">Sysmex XN-1000</div><div class="mstat">Calibration prévue dans 3 h</div></div><span class="pill ok">nominal</span></div>
           <div class="mrow"><span class="heart bad"></span><div style="flex:1"><div class="mname">Architect i2000</div><div class="mstat">Dérive de contrôle détectée · niveau 2</div></div><span class="pill warn">à vérifier</span></div>
@@ -374,14 +462,21 @@
   <section class="block" style="padding-top:30px">
     <div class="wrap">
       <div class="feat">
-        <div class="fcell"><div class="fk">Visibilité</div><h4>Tout voir, d'un coup d'œil</h4><p>L'état de chaque automate en continu : disponibilité, contrôles qualité, calibrations à venir, débit.</p></div>
-        <div class="fcell"><div class="fk">Anticipation</div><h4>Prévenu avant la panne</h4><p>Une dérive, un ralentissement, une maintenance qui approche : vous recevez le signal avant l'arrêt.</p></div>
-        <div class="fcell"><div class="fk">Conformité</div><h4>Une traçabilité pour l'accréditation</h4><p>Les contrôles qualité enregistrés et historisés, dans l'esprit du GBEA et de la norme ISO 15189.</p></div>
+        <div class="fcell"><div class="fk">Zéro risque</div><h4>On ne touche à rien</h4><p>On se branche sur vos machines et on observe. On ne touche à rien dans votre labo.</p></div>
+        <div class="fcell"><div class="fk">À temps</div><h4>Prévenu avant la panne</h4><p>Une machine qui fatigue, un contrôle qui dérape : vous le savez à temps, pas une fois arrêté.</p></div>
+        <div class="fcell"><div class="fk">En ordre</div><h4>Votre qualité au propre</h4><p>Tous vos contrôles qualité gardés en ordre pour votre accréditation.</p></div>
       </div>
-      <div class="proof">
-        <div class="pc"><div class="pn">73 %</div><div class="pl">des responsables citent les arrêts d'automates comme première difficulté.</div></div>
-        <div class="pc"><div class="pn">Temps réel</div><div class="pl">aucune ressaisie : les données viennent directement des instruments.</div></div>
-        <div class="pc"><div class="pn">Sans risque</div><div class="pl">l'outil observe, il ne modifie rien dans votre système.</div></div>
+      <h3 class="tlead">Vous avancez sans risque</h3>
+      <ul class="tcheck">
+        <li><span class="ic">✓</span> Marche avec votre logiciel actuel (SoftLAM, Winlabo…). Rien à changer.</li>
+        <li><span class="ic">✓</span> Pensé pour votre accréditation ISO 15189 et le GBEA.</li>
+        <li><span class="ic">✓</span> Vos données restent chez vous, en Algérie.</li>
+      </ul>
+      <div class="reserved">Bientôt : les retours de nos premiers laboratoires partenaires, avec leur wilaya.</div>
+      <div class="ctarow" style="margin-top:28px">
+        <button class="btn btn-primary" onclick="book('middleware')">Réserver un appel</button>
+        <button class="btn btn-ghost" onclick="goDiag()">Être rappelé</button>
+        <span data-contact-slot class="callnote"></span>
       </div>
     </div>
   </section>
@@ -394,17 +489,21 @@
       <div class="phero-grid">
         <div>
           <span class="eyebrow">Outil · Pilotage</span>
-          <h1>Voyez où le temps — et l'argent — vous échappent.</h1>
-          <p class="lead">Vos indicateurs réunis, du benchmarking, des alertes au bon moment. Réduire le délai de rendu pré-analytique de 30 minutes libère environ <b style="color:var(--emerald)">20 % de capacité</b> sur les urgences — de la capacité gagnée sans acheter un seul automate.</p>
-          <button class="btn btn-primary" onclick="goDiag()">Piloter mon laboratoire</button>
-          <div><span class="nomig"><span class="d"></span> Lecture de vos données. Aucune écriture, aucun risque.</span></div>
+          <h1>Moins de temps perdu, plus de patients traités.</h1>
+          <p class="lead">On lit vos chiffres et on vous montre où le temps part — sur un labo comme sur plusieurs. Rien à changer chez vous.</p>
+          <div class="ctarow">
+            <button class="btn btn-primary" onclick="book('dashboard')">Réserver un appel</button>
+            <button class="btn btn-ghost" onclick="goDiag()">Être rappelé</button>
+          </div>
+          <span data-contact-slot class="callnote"></span>
+          <div><span class="nomig"><span class="d"></span> On lit vos chiffres. On n'écrit rien, aucun risque.</span></div>
         </div>
         <div class="vcard">
-          <div class="vtop"><span>PILOTAGE · CE MOIS</span><span style="color:var(--emerald);font-weight:600">▲ vs mois dernier</span></div>
+          <div class="vtop"><span>PILOTAGE · CE MOIS · exemple</span><span style="color:var(--emerald);font-weight:600">▲ vs mois dernier</span></div>
           <div class="kpis">
             <div class="kpi"><div class="kt">Délai de rendu moyen</div><div class="kv">2h14 <small>−18%</small></div></div>
             <div class="kpi"><div class="kt">Capacité urgences</div><div class="kv">+22% <small>↑</small></div></div>
-            <div class="kpi"><div class="kt">Taux d'encaissement</div><div class="kv">94,1% <small>cible 96</small></div></div>
+            <div class="kpi"><div class="kt">Écart entre sites</div><div class="kv">Oran <small>+9%</small></div></div>
             <div class="kpi"><div class="kt">Volume / vacation</div><div class="kv">1 380</div></div>
           </div>
           <div class="bars"><i style="height:42%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:70%"></i><i style="height:60%"></i><i class="hot" style="height:86%"></i><i class="hot" style="height:95%"></i></div>
@@ -416,14 +515,21 @@
   <section class="block" style="padding-top:30px">
     <div class="wrap">
       <div class="feat">
-        <div class="fcell"><div class="fk">Vos indicateurs</div><h4>Tout réuni, à jour</h4><p>Délais de rendu, volumes, encaissement, productivité par poste — au même endroit, en continu.</p></div>
-        <div class="fcell"><div class="fk">Benchmarking</div><h4>Vous situer, vraiment</h4><p>Comparez dans le temps et entre sites. Repérez ce qui décroche avant que cela ne pèse.</p></div>
-        <div class="fcell"><div class="fk">Alertes</div><h4>Le signal au bon moment</h4><p>Un délai qui dérape, un goulot qui se forme : vous êtes prévenu pendant qu'il est encore temps.</p></div>
+        <div class="fcell"><div class="fk">Zéro risque</div><h4>On ne touche à rien</h4><p>On lit vos chiffres, c'est tout. On ne change rien dans votre système ni dans votre accréditation.</p></div>
+        <div class="fcell"><div class="fk">Au clair</div><h4>Voir où le temps se perd</h4><p>Vos délais et vos volumes au même endroit. Vous voyez enfin où la journée se perd, sans tableur.</p></div>
+        <div class="fcell"><div class="fk">Plusieurs labos</div><h4>Comparer vos sites d'un coup d'œil</h4><p>Plusieurs labos ? Comparez-les entre eux et repérez celui qui décroche avant que ça pèse.</p></div>
       </div>
-      <div class="proof">
-        <div class="pc"><div class="pn">+20 %</div><div class="pl">de capacité urgences en réduisant le délai pré-analytique de 30 min.</div></div>
-        <div class="pc"><div class="pn">Sans achat</div><div class="pl">cette capacité se gagne sans nouvel équipement.</div></div>
-        <div class="pc"><div class="pn">En lecture seule</div><div class="pl">l'outil consulte vos données sans jamais y écrire.</div></div>
+      <h3 class="tlead">Vous avancez sans risque</h3>
+      <ul class="tcheck">
+        <li><span class="ic">✓</span> Marche avec votre logiciel actuel (SoftLAM, Winlabo…). Rien à changer.</li>
+        <li><span class="ic">✓</span> Pensé pour votre accréditation ISO 15189 et le GBEA.</li>
+        <li><span class="ic">✓</span> Vos données restent chez vous, en Algérie.</li>
+      </ul>
+      <div class="reserved">Bientôt : les retours de nos premiers laboratoires partenaires, avec leur wilaya.</div>
+      <div class="ctarow" style="margin-top:28px">
+        <button class="btn btn-primary" onclick="book('dashboard')">Réserver un appel</button>
+        <button class="btn btn-ghost" onclick="goDiag()">Être rappelé</button>
+        <span data-contact-slot class="callnote"></span>
       </div>
     </div>
   </section>
@@ -436,18 +542,22 @@
       <div class="phero-grid">
         <div>
           <span class="eyebrow">Outil · Équipe</span>
-          <h1>Un appui quotidien pour toute votre équipe.</h1>
-          <p class="lead">Il répond aux questions de procédure, déchiffre les ordonnances difficiles à lire, forme vos techniciens avec des évaluations régulières et accompagne les nouvelles recrues. Moins d'erreurs, une équipe qui progresse, des nouveaux opérationnels plus vite.</p>
-          <button class="btn btn-primary" onclick="goDiag()">Essayer l'assistant</button>
-          <div><span class="nomig"><span class="d"></span> S'installe seul. Encore plus utile relié à vos données.</span></div>
+          <h1>Une réponse tout de suite, pour toute l'équipe — personne ne reste coincé.</h1>
+          <p class="lead">Il répond à toute votre équipe, sur-le-champ : procédures, doutes, ordonnances difficiles… Personne n'attend, tout le monde avance.</p>
+          <div class="ctarow">
+            <button class="btn btn-primary" onclick="book('assistant')">Réserver un appel</button>
+            <button class="btn btn-ghost" onclick="goDiag()">Être rappelé</button>
+          </div>
+          <span data-contact-slot class="callnote"></span>
+          <div><span class="nomig"><span class="d"></span> Fonctionne seul, sans toucher à votre système. Vos données patients restent chez vous.</span></div>
         </div>
         <div class="vcard">
-          <div class="vtop"><span>ASSISTANT · CONVERSATION</span><span style="color:var(--emerald);font-weight:600">● disponible</span></div>
+          <div class="vtop"><span>ASSISTANT · CONVERSATION · exemple</span><span style="color:var(--emerald);font-weight:600">● disponible</span></div>
           <div class="chat">
             <div class="bub user">Procédure pour un prélèvement pédiatrique sur tube citraté ?</div>
             <div class="bub ai"><div class="who">Assistant Synaps</div>Volume minimal 1,8 mL, ratio 1:9 strict, tube rempli jusqu'au trait. Pour un nourrisson, voir le protocole P-04. Je vous l'ouvre ?</div>
             <div class="bub user">Lis cette ordonnance 📷</div>
-            <div class="bub ai"><div class="who">Assistant Synaps</div>Lecture : NFS + CRP + Ferritine, prescrite par le Dr Aymard. Saisie pré-remplie, prête à vérifier.</div>
+            <div class="bub ai"><div class="who">Assistant Synaps</div>Lecture : NFS + CRP + Ferritine. Saisie pré-remplie, prête à vérifier.</div>
           </div>
         </div>
       </div>
@@ -456,14 +566,21 @@
   <section class="block" style="padding-top:30px">
     <div class="wrap">
       <div class="feat">
-        <div class="fcell"><div class="fk">Réponses</div><h4>La bonne réponse, tout de suite</h4><p>Procédures, protocoles, qualité : l'équipe demande, l'assistant répond — sans fouiller dans les classeurs.</p></div>
-        <div class="fcell"><div class="fk">Saisie</div><h4>Fini les ordonnances illisibles</h4><p>L'assistant lit l'écriture manuscrite et pré-remplit la saisie. Moins d'erreurs, moins de ressaisie.</p></div>
-        <div class="fcell"><div class="fk">Formation</div><h4>Forme, évalue, accompagne</h4><p>Des évaluations régulières pour faire progresser l'équipe, et un accompagnement qui rend une recrue opérationnelle plus vite.</p></div>
+        <div class="fcell"><div class="fk">Jamais bloqué</div><h4>Une réponse tout de suite</h4><p>Procédure, doute, ordonnance difficile… chacun obtient une réponse claire sur-le-champ, à toute heure. Personne n'attend.</p></div>
+        <div class="fcell"><div class="fk">Plus compétent</div><h4>Toute l'équipe progresse</h4><p>Chacun travaille mieux, et les nouvelles recrues deviennent vite autonomes.</p></div>
+        <div class="fcell"><div class="fk">Plus productif</div><h4>Moins de temps perdu</h4><p>Fini de chercher dans les classeurs ou de ressaisir : moins d'allers-retours, plus de patients traités.</p></div>
       </div>
-      <div class="proof">
-        <div class="pc"><div class="pn">Chaque jour</div><div class="pl">un appui disponible à chaque vacation, pour chacun.</div></div>
-        <div class="pc"><div class="pn">Moins d'erreurs</div><div class="pl">de saisie grâce à la lecture assistée des ordonnances.</div></div>
-        <div class="pc"><div class="pn">En français</div><div class="pl">pensé pour le quotidien de votre laboratoire.</div></div>
+      <h3 class="tlead">Vous avancez sans risque</h3>
+      <ul class="tcheck">
+        <li><span class="ic">✓</span> Marche tout seul, sans toucher à votre logiciel actuel (SoftLAM, Winlabo…).</li>
+        <li><span class="ic">✓</span> Vos données patients restent chez vous, en Algérie. Le technicien valide toujours.</li>
+        <li><span class="ic">✓</span> Pensé pour votre accréditation ISO 15189 et le GBEA.</li>
+      </ul>
+      <div class="reserved">Bientôt : les retours de nos premiers laboratoires partenaires, avec leur wilaya.</div>
+      <div class="ctarow" style="margin-top:28px">
+        <button class="btn btn-primary" onclick="book('assistant')">Réserver un appel</button>
+        <button class="btn btn-ghost" onclick="goDiag()">Être rappelé</button>
+        <span data-contact-slot class="callnote"></span>
       </div>
     </div>
   </section>
@@ -476,14 +593,18 @@
       <div class="phero-grid">
         <div>
           <span class="eyebrow amber">Outil · Patients — Offert</span>
-          <h1>Nous créons gratuitement votre site et vos rendez-vous en ligne.</h1>
-          <p class="lead">Une page professionnelle pour votre laboratoire et un système de prise de rendez-vous, mis en place pour vous, sans frais. Vos patients réservent eux-mêmes, reçoivent leurs rappels, et vous réduisez les rendez-vous manqués.</p>
-          <button class="btn btn-emerald" onclick="goDiag()">Recevoir ma page gratuite</button>
-          <div><span class="nomig"><span class="d"></span> Offert. Fonctionne indépendamment de votre système.</span></div>
+          <h1>Votre site web et vos rendez-vous en ligne, faits gratuitement.</h1>
+          <p class="lead">On vous fait une belle page et la prise de rendez-vous en ligne. Vos patients réservent seuls et reçoivent un rappel.</p>
+          <div class="ctarow">
+            <button class="btn btn-emerald" onclick="book('site')">Réserver un appel</button>
+            <button class="btn btn-ghost" onclick="goDiag()">Recevoir ma page gratuite</button>
+          </div>
+          <span data-contact-slot class="callnote"></span>
+          <div><span class="nomig"><span class="d"></span> Offert · fonctionne à côté de votre système, on n'installe rien sur vos postes.</span></div>
         </div>
         <div class="vcard">
           <div class="resa">
-            <div class="rhead">Laboratoire Es-Salem <span style="font-size:12px;color:var(--emerald);font-weight:600">RÉSERVER</span></div>
+            <div class="rhead">Laboratoire Es-Salem <span style="font-size:11px;color:var(--muted);font-weight:600">EXEMPLE · RÉSERVER</span></div>
             <div class="rbody">
               <div style="font-size:13px;color:var(--muted)">Prise de sang · mardi 24 juin</div>
               <div class="slots">
@@ -505,14 +626,21 @@
   <section class="block" style="padding-top:30px">
     <div class="wrap">
       <div class="feat">
-        <div class="fcell"><div class="fk">Offert</div><h4>Mise en place gratuite</h4><p>Nous concevons et publions votre page et votre module de rendez-vous. Vous n'avez rien à faire.</p></div>
-        <div class="fcell"><div class="fk">Rendez-vous</div><h4>Vos patients réservent seuls</h4><p>Créneaux en ligne, rappels automatiques, annulations gérées. Moins d'appels, un planning qui se remplit.</p></div>
-        <div class="fcell"><div class="fk">Présence</div><h4>Une image à la hauteur</h4><p>Un site soigné qui inspire confiance à vos patients comme à vos prescripteurs.</p></div>
+        <div class="fcell"><div class="fk">Offert</div><h4>Entièrement offert (0 DA)</h4><p>Votre page et votre prise de rendez-vous, créées et mises en place pour vous. Sans coût caché.</p></div>
+        <div class="fcell"><div class="fk">Rendez-vous</div><h4>Moins de rendez-vous manqués</h4><p>Vos patients réservent seuls leur créneau et reçoivent un rappel automatique. Moins d'absences, moins d'appels au comptoir.</p></div>
+        <div class="fcell"><div class="fk">Sans risque</div><h4>Sans toucher à votre système</h4><p>Fonctionne à côté de votre logiciel. On n'installe rien sur vos postes, on ne modifie rien.</p></div>
       </div>
-      <div class="proof">
-        <div class="pc"><div class="pn">0 DA</div><div class="pl">création de la page et du système de rendez-vous.</div></div>
-        <div class="pc"><div class="pn">Moins d'absences</div><div class="pl">les rappels automatiques réduisent les rendez-vous manqués.</div></div>
-        <div class="pc"><div class="pn">Autonome</div><div class="pl">fonctionne sans toucher à votre système actuel.</div></div>
+      <h3 class="tlead">Sans risque, sans engagement</h3>
+      <ul class="tcheck">
+        <li><span class="ic">✓</span> Fonctionne à côté de votre logiciel — on n'installe rien sur vos postes.</li>
+        <li><span class="ic">✓</span> C'est gratuit, sans engagement. On vous montre la page avant de la publier.</li>
+        <li><span class="ic">✓</span> Les données de vos patients restent confidentielles, en Algérie.</li>
+      </ul>
+      <div class="reserved">Bientôt : les retours de nos premiers laboratoires partenaires, avec leur wilaya.</div>
+      <div class="ctarow" style="margin-top:28px">
+        <button class="btn btn-emerald" onclick="book('site')">Réserver un appel</button>
+        <button class="btn btn-ghost" onclick="goDiag()">Recevoir ma page gratuite</button>
+        <span data-contact-slot class="callnote"></span>
       </div>
     </div>
   </section>
@@ -525,23 +653,21 @@
       <div class="phero-grid">
         <div>
           <span class="eyebrow amber">Le système complet · SGL</span>
-          <h1>Le système le plus fiable, ou nous vous remboursons.</h1>
-          <p class="lead">Quand vous serez prêt à franchir le cap, le système de gestion de laboratoire Synaps réunit toutes vos briques. Disponibilité garantie par contrat à 99,9 % — et si nous ne tenons pas notre engagement, vous êtes remboursé.</p>
-          <button class="btn btn-primary" onclick="goDiag()">Parler à un expert</button>
-          <div><span class="nomig"><span class="d"></span> Vous y venez après avoir éprouvé nos outils. Pas avant.</span></div>
-        </div>
-        <div class="vcard" style="display:flex;flex-direction:column;justify-content:center">
-          <span style="font-size:12.5px;color:var(--muted);font-weight:600">ENGAGEMENT DE SERVICE</span>
-          <div class="sla"><span class="big">99,9</span><span class="pct">%</span></div>
-          <div style="font-size:13.5px;color:var(--ink-soft)">de disponibilité garantie par contrat</div>
-          <div class="guarantee">
-            <h4><span class="heart"></span> Sinon, nous vous remboursons.</h4>
-            <div class="ledger">
-              <div class="lr"><span>Disponibilité garantie</span><b>99,9 %</b></div>
-              <div class="lr"><span>Seuil non atteint un mois donné</span><b>crédit automatique</b></div>
-              <div class="lr"><span>Engagement</span><b>écrit, contractuel</b></div>
-            </div>
+          <h1>Le système complet, le jour où vous serez prêt — sans tout changer d'un coup.</h1>
+          <p class="lead">Le système complet réunit les outils que vous utilisez déjà. Vous y venez à votre rythme, jamais d'un coup.</p>
+          <div class="ctarow">
+            <button class="btn btn-primary" onclick="book('lis')">Réserver un appel</button>
+            <button class="btn btn-ghost" onclick="goDiag()">Être rappelé</button>
           </div>
+          <span data-contact-slot class="callnote"></span>
+          <div><span class="nomig"><span class="d"></span> Vous gardez votre système actuel. On le complète petit à petit, sans rien arrêter.</span></div>
+        </div>
+        <div class="vcard">
+          <div class="vtop"><span>VOTRE TRAJECTOIRE · exemple</span><span style="color:var(--emerald);font-weight:600">à votre rythme</span></div>
+          <div class="brick"><span class="ic">🔬</span><div><div class="bt">Suivi des analyseurs</div><div class="bs">vous commencez ici</div></div></div>
+          <div class="brick"><span class="ic">📊</span><div><div class="bt">Pilotage &amp; délais</div><div class="bs">ajouté quand vous voulez</div></div></div>
+          <div class="brick"><span class="ic">💬</span><div><div class="bt">Assistant de l'équipe</div><div class="bs">si vous le souhaitez</div></div></div>
+          <div class="brick future"><span class="ic">🏛️</span><div><div class="bt">Système complet (SGL)</div><div class="bs">le jour où vous serez prêt</div></div></div>
         </div>
       </div>
     </div>
@@ -549,16 +675,23 @@
   <section class="block" style="padding-top:30px">
     <div class="wrap">
       <div class="feat">
-        <div class="fcell"><div class="fk">Fiabilité</div><h4>Pensé pour ne jamais s'arrêter</h4><p>Architecture redondante, sauvegardes continues, supervision permanente. Votre activité ne s'interrompt pas.</p></div>
-        <div class="fcell"><div class="fk">Continuité</div><h4>Vous connaissez déjà nos outils</h4><p>Le système réunit les briques que vous utilisez déjà. La migration n'est plus un saut dans le vide : c'est la suite naturelle.</p></div>
-        <div class="fcell"><div class="fk">Conformité</div><h4>ISO 15189 &amp; GBEA</h4><p>Traçabilité, gestion qualité et comptes-rendus pensés pour accompagner votre démarche d'accréditation.</p></div>
+        <div class="fcell"><div class="fk">En douceur</div><h4>Pas de changement d'un coup</h4><p>Vous gardez SoftLAM ou Winlabo aujourd'hui. Plus tard, on bascule petit à petit, sans rien arrêter.</p></div>
+        <div class="fcell"><div class="fk">Votre rythme</div><h4>Vous gardez la main</h4><p>Rien ne se décide aujourd'hui. Vous ajoutez les outils un par un ; le système complet, c'est quand vous voulez.</p></div>
+        <div class="fcell"><div class="fk">Accréditation</div><h4>Pensé pour votre accréditation</h4><p>Tout est prévu pour votre dossier ISO 15189 / GBEA — le labo reste accrédité, l'outil l'accompagne.</p></div>
       </div>
-      <div class="proof">
-        <div class="pc"><div class="pn">99,9 %</div><div class="pl">disponibilité garantie par contrat.</div></div>
-        <div class="pc"><div class="pn">Remboursé</div><div class="pl">si l'engagement n'est pas tenu sur un mois donné.</div></div>
-        <div class="pc"><div class="pn">Continu</div><div class="pl">vos outils Synaps deviennent des modules natifs du système.</div></div>
+      <h3 class="tlead">Vous avancez sans risque</h3>
+      <ul class="tcheck">
+        <li><span class="ic">✓</span> Vous gardez votre logiciel actuel. On bascule petit à petit, sans rien arrêter.</li>
+        <li><span class="ic">✓</span> Pensé pour votre accréditation ISO 15189 et le GBEA.</li>
+        <li><span class="ic">✓</span> Les garanties sont détaillées dans votre contrat.</li>
+      </ul>
+      <div class="reserved">Bientôt : les retours de nos premiers laboratoires partenaires, avec leur wilaya.</div>
+      <div class="ctarow" style="margin-top:28px">
+        <button class="btn btn-primary" onclick="book('lis')">Réserver un appel</button>
+        <button class="btn btn-ghost" onclick="goDiag()">Être rappelé</button>
+        <span data-contact-slot class="callnote"></span>
       </div>
-      <p class="disc">Les niveaux de service, les modalités de crédit et les conditions de remboursement sont précisés dans le contrat de service. Les pourcentages et estimations présentés sur ce site sont des ordres de grandeur issus de références du secteur et sont confirmés, pour chaque laboratoire, par un diagnostic préalable.</p>
+      <p class="disc">Les estimations présentées sur ce site sont des ordres de grandeur, confirmés pour chaque laboratoire par un diagnostic préalable.</p>
     </div>
   </section>
 </div>
@@ -570,12 +703,17 @@
       <div class="phero-grid">
         <div>
           <span class="eyebrow">Le diagnostic offert</span>
-          <h1>On regarde vos chiffres avec vous. C'est offert.</h1>
-          <p class="lead">Laissez-nous quelques informations et un membre de notre équipe vous rappelle — en français, simplement. Pas d'engagement, pas d'automate : un vrai échange pour comprendre votre laboratoire.</p>
+          <h1 id="diag-title">Voyons, sur vos propres chiffres, ce que votre facturation laisse passer. C'est offert.</h1>
+          <p class="lead" id="diag-lead">Laissez-nous vos coordonnées : un membre de l'équipe vous rappelle, en français, pour convenir d'un diagnostic — sans engagement.</p>
           <div class="reassure">
             <span><span class="ck">✓</span> Réponse sous 48 h ouvrées</span>
             <span><span class="ck">✓</span> Sans engagement</span>
           </div>
+          <div class="ctarow" style="margin-top:18px">
+            <button class="btn btn-primary" onclick="book('diagnostic')">Réserver un appel</button>
+            <span style="font-size:13.5px;color:var(--muted)">ou remplissez le formulaire →</span>
+          </div>
+          <span data-contact-slot class="callnote"></span>
         </div>
         <div class="vcard">
           <div class="vtop"><span>DEMANDE DE DIAGNOSTIC</span><span style="color:var(--emerald);font-weight:600">● offert</span></div>
@@ -588,7 +726,9 @@
             <label class="fld"><span>Votre nom</span><input name="nom" required placeholder="Dr ..."></label>
             <label class="fld"><span>Nom du laboratoire</span><input name="laboratoire" required placeholder="Laboratoire ..."></label>
             <label class="fld"><span>Wilaya</span><input name="wilaya" required placeholder="Alger, Oran, ..."></label>
-            <label class="fld"><span>Téléphone</span><input name="telephone" type="tel" required placeholder="0X XX XX XX XX"></label>
+            <label class="fld"><span>Téléphone <em style="color:var(--muted);font-style:normal">(ou e-mail ci-dessous)</em></span><input name="telephone" type="tel" placeholder="0X XX XX XX XX"></label>
+            <label class="fld"><span>E-mail <em style="color:var(--muted);font-style:normal">(ou téléphone ci-dessus)</em></span><input name="email" type="email" placeholder="vous@laboratoire.dz"></label>
+            <div id="diag-err" style="display:none;font-size:12.5px;color:var(--amber);margin:-4px 0 10px">Indiquez au moins un moyen de vous joindre : téléphone ou e-mail.</div>
             <label class="fld"><span>Un mot sur votre besoin <em style="color:var(--muted);font-style:normal">(facultatif)</em></span><textarea name="message" rows="2" placeholder="Ce qui vous préoccupe en ce moment..."></textarea></label>
 
             <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:6px">Demander mon diagnostic offert</button>
@@ -598,12 +738,31 @@
           <div id="diag-thanks" style="display:none;text-align:center;padding:24px 8px">
             <div style="font-size:40px">✓</div>
             <h4 style="font-family:'Fraunces';font-size:21px;margin:10px 0 8px">Merci, c'est noté.</h4>
-            <p style="color:var(--ink-soft);font-size:14.5px">Un membre de notre équipe vous rappelle très vite. À bientôt.</p>
+            <p style="color:var(--ink-soft);font-size:14.5px">Une vraie personne de notre équipe vous recontacte sous 48 h, en français. À bientôt.</p>
           </div>
         </div>
       </div>
     </div>
   </header>
+  <section class="block" style="padding-top:30px">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow blue">Comment ça se passe, concrètement</span><h2>Vos données restent chez vous.</h2></div>
+      <div class="feat">
+        <div class="fcell"><div class="fk">Accès</div><h4>En lecture seule</h4><p>Vous nous transmettez un export de votre logiciel actuel (SoftLAM, Winlabo…). On ne touche à rien, on ne migre rien.</p></div>
+        <div class="fcell"><div class="fk">Hébergement</div><h4>En Algérie</h4><p>Vos données sont hébergées en Algérie, jamais partagées, et supprimées après le constat si vous le souhaitez.</p></div>
+        <div class="fcell"><div class="fk">Confidentialité</div><h4>Engagement signé</h4><p>Un engagement de confidentialité est signé avant tout accès, dans l'esprit de l'ISO 15189 et du GBEA.</p></div>
+      </div>
+      <div class="econote"><b>Pourquoi c'est offert ?</b> C'est notre façon de prouver notre valeur avant de vous proposer quoi que ce soit. À la fin, vous gardez le constat — libre à vous d'aller plus loin, ou non. Sans commission sur vos recettes, sans relance automatique.</div>
+      <div class="proofnote">Premiers laboratoires partenaires en cours d'installation — leurs retours, avec leur wilaya, seront publiés ici.</div>
+    </div>
+  </section>
+</div>
+
+<div class="switcher" id="switcher">
+  <b>Design&nbsp;:</b>
+  <button data-design="chaleureux" onclick="setDesign('chaleureux')">Chaleureux</button>
+  <button data-design="clair" onclick="setDesign('clair')">Clair</button>
+  <button data-design="rassurant" onclick="setDesign('rassurant')">Rassurant</button>
 </div>
 
 <footer>
@@ -614,7 +773,7 @@
         <p>Des outils pensés avec les laboratoires de biologie médicale. Une brique à la fois, à votre rythme.</p>
       </div>
       <div class="foot-col"><h5>Les outils</h5><a onclick="go('middleware')">Suivi des analyseurs</a><a onclick="go('dashboard')">Pilotage &amp; délais</a><a onclick="go('assistant')">Assistant de l'équipe</a><a onclick="go('site')">Site + rendez-vous</a><a onclick="go('lis')">Système complet (SGL)</a></div>
-      <div class="foot-col"><h5>Commencer</h5><a onclick="goDiag()">Diagnostic offert</a><a onclick="go('home')">Comment ça se passe</a><a onclick="goDiag()">Nous contacter</a></div>
+      <div class="foot-col"><h5>Commencer</h5><a onclick="book('footer')">Réserver un appel</a><a onclick="goDiag()">Diagnostic offert</a><a onclick="go('home')">Comment ça se passe</a><a onclick="goDiag()">Être recontacté</a></div>
       <div class="foot-col"><h5>Confiance</h5><a onclick="go('home')">Conformité ISO 15189</a><a onclick="go('home')">Respect du GBEA</a><a onclick="go('home')">Protection des données</a></div>
     </div>
     <div class="foot-bottom"><span>© 2026 Synaps. Tous droits réservés.</span><span>Sans migration. Sans risque. À votre rythme.</span></div>
@@ -630,10 +789,17 @@
     dashboard:  {path:'/pilotage',          title:'Pilotage & délais de rendu — Synaps', desc:"Vos indicateurs réunis, des alertes au bon moment, de la capacité gagnée sans nouvel automate."},
     assistant:  {path:'/assistant',         title:"Assistant de l'équipe — Synaps", desc:"Un appui quotidien pour votre équipe : procédures, lecture des ordonnances, formation."},
     site:       {path:'/site-rendez-vous',  title:'Site web + rendez-vous (offert) — Synaps', desc:"Nous créons gratuitement votre page et votre système de prise de rendez-vous en ligne."},
-    lis:        {path:'/systeme-sgl',       title:'Système complet (SGL) — Synaps', desc:"Le système de gestion de laboratoire le plus fiable, ou nous vous remboursons. À votre rythme."},
+    lis:        {path:'/systeme-sgl',       title:'Système complet (SGL) — Synaps', desc:"Le système de gestion de laboratoire complet, le jour où vous serez prêt. Sans tout changer d'un coup, à votre rythme."},
     diagnostic: {path:'/diagnostic',        title:'Diagnostic offert — Synaps', desc:"Demandez votre diagnostic offert. Un membre de l'équipe vous rappelle, sans engagement."}
   };
   const PATH2ID=Object.fromEntries(Object.entries(PAGES).map(([id,m])=>[m.path,id]));
+
+  // ⚠️ À RENSEIGNER avant mise en ligne :
+  // 1) votre vrai lien de réservation (Google Agenda / Calendly)
+  const CALENDAR_URL='https://calendly.com/hemo-labs/appel-15min';
+  // 2) un vrai interlocuteur (nom + numéro algérien) — levier de confiance n°1.
+  //    Tant que c'est vide, aucune ligne "appelez-nous" n'est affichée (pas de faux numéro).
+  const CONTACT={ name:'', phone:'' };
 
   function render(p){
     Object.keys(PAGES).forEach(x=>document.getElementById('page-'+x).classList.toggle('on',x===p));
@@ -655,10 +821,39 @@
     window.scrollTo({top:0,behavior:'instant'});
   }
 
+  // Le formulaire reste sur le sujet de la page d'origine (pas de bait-and-switch).
+  const DIAG_CONTEXT={
+    home:      {title:"Voyons, sur vos propres chiffres, ce que votre facturation laisse passer. C'est offert.", lead:"Laissez-nous vos coordonnées : un membre de l'équipe vous rappelle, en français, pour convenir d'un diagnostic — sans engagement."},
+    diagnostic:{title:"Voyons, sur vos propres chiffres, ce que votre facturation laisse passer. C'est offert.", lead:"Laissez-nous vos coordonnées : un membre de l'équipe vous rappelle, en français, pour convenir d'un diagnostic — sans engagement."},
+    middleware:{title:"Voyons l'état de vos automates ensemble. C'est offert.", lead:"Laissez-nous vos coordonnées : on vous montre le suivi de vos analyseurs sur votre propre installation — sans engagement."},
+    dashboard: {title:"Pilotons vos délais ensemble. C'est offert.", lead:"Laissez-nous vos coordonnées : on vous montre vos indicateurs sur vos propres données — sans engagement."},
+    assistant: {title:"Découvrez l'assistant sur vos propres cas. C'est offert.", lead:"Laissez-nous vos coordonnées : on vous montre l'assistant en situation — sans engagement."},
+    site:      {title:"On vous crée votre page, gratuitement.", lead:"Réservez un appel ou laissez-nous vos coordonnées : on met en place votre page et vos rendez-vous en ligne, sans frais et sans engagement."},
+    lis:       {title:"Parlons de votre système, le moment venu.", lead:"Laissez-nous vos coordonnées : on échange sur le système complet quand vous serez prêt — sans engagement."}
+  };
   function goDiag(){
-    if(window.gtag) gtag('event','cta_diagnostic',{source:document.getElementById('page-diagnostic').classList.contains('on')?'diagnostic':(currentId()||'home')});
-    document.getElementById('diag-source').value=currentId()||'home';
+    const src = document.getElementById('page-diagnostic').classList.contains('on') ? 'home' : (currentId()||'home');
+    if(window.gtag) gtag('event','cta_diagnostic',{source:src});
+    document.getElementById('diag-source').value=src;
+    const ctx=DIAG_CONTEXT[src]||DIAG_CONTEXT.home;
+    document.getElementById('diag-title').textContent=ctx.title;
+    document.getElementById('diag-lead').textContent=ctx.lead;
     go('diagnostic');
+  }
+
+  // « Réserver un appel » : ouvre le lien d'agenda (le directeur choisit son créneau).
+  function book(source){
+    if(window.gtag) gtag('event','cta_book',{source:source||currentId()});
+    window.open(CALENDAR_URL,'_blank','noopener');
+  }
+
+  // Affiche un vrai contact humain à appeler soi-même, seulement s'il est renseigné.
+  function renderContact(){
+    if(!CONTACT.phone) return;
+    const tel=CONTACT.phone.replace(/\s+/g,'');
+    document.querySelectorAll('[data-contact-slot]').forEach(el=>{
+      el.innerHTML='Vous préférez appeler ? Demandez '+CONTACT.name+" au <a href=\"tel:"+tel+"\">"+CONTACT.phone+'</a>.';
+    });
   }
 
   function currentId(){ return PATH2ID[location.pathname]||'home'; }
@@ -666,13 +861,30 @@
   // Bouton précédent/suivant du navigateur
   window.addEventListener('popstate',()=>render(currentId()));
 
+  // Sélecteur de design (prévisualisation) — bascule le thème sans recharger.
+  function setDesign(d){
+    if(d==='chaleureux') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme',d);
+    const u=new URL(location); u.searchParams.set('design',d); history.replaceState(null,'',u);
+    markDesign(d);
+  }
+  function markDesign(d){
+    document.querySelectorAll('#switcher button').forEach(b=>b.classList.toggle('on',b.getAttribute('data-design')===d));
+  }
+
   // Affichage initial selon l'URL demandée (deep-link depuis une pub)
   render(currentId());
+  renderContact();
+  markDesign(document.documentElement.getAttribute('data-theme')||'chaleureux');
 
   // Envoi du formulaire en AJAX vers Netlify Forms (reste sur la page).
   function submitDiag(e){
     e.preventDefault();
     const form=e.target;
+    const tel=(form.telephone.value||'').trim(), email=(form.email.value||'').trim();
+    const err=document.getElementById('diag-err');
+    if(!tel && !email){ err.style.display='block'; return false; }
+    err.style.display='none';
     const data=new URLSearchParams(new FormData(form)).toString();
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:data})
       .then(()=>{
