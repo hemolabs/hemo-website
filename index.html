@@ -22,14 +22,6 @@
   gtag('config', 'G-KWJ8NEV7ZJ', {send_page_view:false});
 </script>
 
-<!-- 3 designs : applique le thème demandé (?design=clair|rassurant) avant le rendu -->
-<script>
-  (function(){
-    var d=new URLSearchParams(location.search).get('design');
-    if(d==='clair'||d==='rassurant') document.documentElement.setAttribute('data-theme',d);
-  })();
-</script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -266,60 +258,6 @@
     .burger{display:block}
   }
 
-  /* ============================================================
-     3 DESIGNS commutables — ?design=chaleureux|clair|rassurant
-     Base (sans attribut) = CHALEUREUX. Voir le sélecteur en bas.
-     ============================================================ */
-
-  /* ---- CLAIR : blanc, grandes lettres, à plat, beaucoup d'air ---- */
-  [data-theme="clair"]{--paper:#FFFFFF;--paper-2:#F7F4EE;--card:#FFFFFF;--line:#EAE3D6;--line-soft:#F2ECE0;--shadow:0 1px 2px rgba(28,43,51,.04)}
-  [data-theme="clair"] body{font-size:16.5px}
-  [data-theme="clair"] .hero h1{font-size:clamp(38px,6vw,64px)}
-  [data-theme="clair"] .phero h1{font-size:clamp(32px,5vw,54px)}
-  [data-theme="clair"] nav{background:rgba(255,255,255,.92)}
-  [data-theme="clair"] .tool,[data-theme="clair"] .hero-card,[data-theme="clair"] .vcard,[data-theme="clair"] .human,[data-theme="clair"] .pc{box-shadow:none}
-  [data-theme="clair"] .tool:hover{transform:none;box-shadow:none;border-color:var(--blue)}
-  [data-theme="clair"] .trust{background:#fff}
-  [data-theme="clair"] .nomig{background:transparent;border:1px solid var(--line);color:var(--ink-soft)}
-  [data-theme="clair"] section.block{padding:84px 0}
-
-  /* ---- RASSURANT : bandeaux bleus, badges, structure institutionnelle ---- */
-  [data-theme="rassurant"] nav{background:var(--blue-deep)}
-  [data-theme="rassurant"] .brand{color:#fff}
-  [data-theme="rassurant"] .brand .mark{background:#fff}
-  [data-theme="rassurant"] .brand .mark::before,[data-theme="rassurant"] .brand .mark::after{background:var(--blue-deep)}
-  [data-theme="rassurant"] .burger{color:#fff}
-  [data-theme="rassurant"] .nav-links a{color:#CFE0E6}
-  [data-theme="rassurant"] .nav-links a:hover{color:#fff;background:rgba(255,255,255,.10)}
-  [data-theme="rassurant"] .nav-links a.active{color:#fff;background:rgba(255,255,255,.16)}
-  [data-theme="rassurant"] .nav-cta{background:#fff!important;color:var(--blue)!important}
-  [data-theme="rassurant"] .nav-cta:hover{background:var(--paper)!important}
-  [data-theme="rassurant"] .hero,[data-theme="rassurant"] .phero{background:var(--blue);color:#fff;border-bottom:4px solid var(--blue-deep)}
-  [data-theme="rassurant"] .hero h1,[data-theme="rassurant"] .phero h1{color:#fff}
-  [data-theme="rassurant"] .hero h1 em{color:#BFE0EA}
-  [data-theme="rassurant"] .hero .lead,[data-theme="rassurant"] .phero .lead{color:#D7E6EC}
-  [data-theme="rassurant"] .hero .eyebrow,[data-theme="rassurant"] .phero .eyebrow{color:#A7CCDA}
-  [data-theme="rassurant"] .pback{color:#BFD6DF}
-  [data-theme="rassurant"] .hero .btn-primary,[data-theme="rassurant"] .phero .btn-primary{background:#fff;color:var(--blue)}
-  [data-theme="rassurant"] .hero .btn-primary:hover,[data-theme="rassurant"] .phero .btn-primary:hover{background:var(--paper)}
-  [data-theme="rassurant"] .hero .btn-ghost,[data-theme="rassurant"] .phero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.45)}
-  [data-theme="rassurant"] .hero .btn-ghost:hover,[data-theme="rassurant"] .phero .btn-ghost:hover{border-color:#fff;color:#fff}
-  [data-theme="rassurant"] .hero .nomig,[data-theme="rassurant"] .phero .nomig{background:rgba(255,255,255,.14);color:#fff}
-  [data-theme="rassurant"] .hero .nomig .d,[data-theme="rassurant"] .phero .nomig .d{background:#fff}
-  [data-theme="rassurant"] .reassure span{color:#D7E6EC}
-  [data-theme="rassurant"] .reassure .ck{background:rgba(255,255,255,.18);color:#fff}
-  [data-theme="rassurant"] .microcta{color:#D7E6EC}
-  [data-theme="rassurant"] .microcta a{color:#fff}
-  [data-theme="rassurant"] .hero .callnote,[data-theme="rassurant"] .phero .callnote{color:#D7E6EC}
-  [data-theme="rassurant"] .hero .callnote a,[data-theme="rassurant"] .phero .callnote a{color:#fff}
-  [data-theme="rassurant"] .fcell{border-top-color:var(--emerald)}
-
-  /* ---- Sélecteur de design (prévisualisation — à retirer en production) ---- */
-  .switcher{position:fixed;right:16px;bottom:16px;z-index:99;display:flex;gap:6px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:30px;padding:6px 8px 6px 14px;box-shadow:0 8px 30px -12px rgba(28,43,51,.4);font-size:12.5px}
-  .switcher b{color:var(--muted);font-weight:600;font-family:'Inter',sans-serif}
-  .switcher button{border:0;background:var(--paper-2);color:var(--ink-soft);font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;padding:7px 12px;border-radius:20px;cursor:pointer}
-  .switcher button.on{background:var(--blue);color:#fff}
-  @media(max-width:560px){.switcher b{display:none}}
 </style>
 </head>
 <body>
@@ -344,7 +282,7 @@
     <div class="wrap hero-grid">
       <div>
         <span class="eyebrow">Des outils pour les laboratoires de biologie médicale</span>
-        <h1>Récupérez le <em>temps et l'argent</em> qui s'échappent de votre laboratoire.</h1>
+        <h1>Récupérez <em>l'argent</em> qui s'échappe de votre laboratoire.</h1>
         <p class="lead">Des outils simples qui s'installent un par un, sans rien changer à votre système actuel. Vous commencez par un, vous voyez le résultat, vous décidez de la suite.</p>
         <div class="btn-row">
           <button class="btn btn-primary" onclick="goDiag()">Demander un diagnostic offert</button>
@@ -362,7 +300,7 @@
         <div class="brick"><span class="ic">🔬</span><div><div class="bt">Suivi des analyseurs</div><div class="bs">4 automates · tout est nominal</div></div></div>
         <div class="brick"><span class="ic">📊</span><div><div class="bt">Délais de rendu</div><div class="bs">2h14 en moyenne aujourd'hui</div></div></div>
         <div class="brick"><span class="ic">💬</span><div><div class="bt">Assistant de l'équipe</div><div class="bs">12 questions traitées ce matin</div></div></div>
-        <div class="brick future"><span class="ic">🏛️</span><div><div class="bt">Système complet (SGL)</div><div class="bs">le moment venu, si vous le souhaitez</div></div></div>
+        <div class="brick future"><span class="ic">🏛️</span><div><div class="bt">Système complet (SGL / LIS)</div><div class="bs">le moment venu</div></div></div>
       </div>
     </div>
   </header>
@@ -707,7 +645,7 @@
       <div class="phero-grid">
         <div>
           <span class="eyebrow">Le diagnostic offert</span>
-          <h1 id="diag-title">Voyons, sur vos propres chiffres, ce que votre facturation laisse passer. C'est offert.</h1>
+          <h1 id="diag-title">Voyons, sur vos propres chiffres, ce que vous laissez passer. C'est offert.</h1>
           <p class="lead" id="diag-lead">Laissez-nous vos coordonnées : un membre de l'équipe vous rappelle, en français, pour convenir d'un diagnostic — sans engagement.</p>
           <div class="reassure">
             <span><span class="ck">✓</span> Réponse sous 48 h ouvrées</span>
@@ -762,12 +700,6 @@
   </section>
 </div>
 
-<div class="switcher" id="switcher">
-  <b>Design&nbsp;:</b>
-  <button data-design="chaleureux" onclick="setDesign('chaleureux')">Chaleureux</button>
-  <button data-design="clair" onclick="setDesign('clair')">Clair</button>
-  <button data-design="rassurant" onclick="setDesign('rassurant')">Rassurant</button>
-</div>
 
 <footer>
   <div class="wrap">
@@ -800,7 +732,7 @@
 
   // ⚠️ À RENSEIGNER avant mise en ligne :
   // 1) votre vrai lien de réservation (Google Agenda / Calendly)
-  const CALENDAR_URL='https://calendly.com/hemo-labs/appel-15min';
+  const CALENDAR_URL='https://calendly.com/sara-hemo-labs/30min';
   // 2) un vrai interlocuteur (nom + numéro algérien) — levier de confiance n°1.
   //    Tant que c'est vide, aucune ligne "appelez-nous" n'est affichée (pas de faux numéro).
   const CONTACT={ name:'', phone:'' };
@@ -827,8 +759,8 @@
 
   // Le formulaire reste sur le sujet de la page d'origine (pas de bait-and-switch).
   const DIAG_CONTEXT={
-    home:      {title:"Voyons, sur vos propres chiffres, ce que votre facturation laisse passer. C'est offert.", lead:"Laissez-nous vos coordonnées : un membre de l'équipe vous rappelle, en français, pour convenir d'un diagnostic — sans engagement."},
-    diagnostic:{title:"Voyons, sur vos propres chiffres, ce que votre facturation laisse passer. C'est offert.", lead:"Laissez-nous vos coordonnées : un membre de l'équipe vous rappelle, en français, pour convenir d'un diagnostic — sans engagement."},
+    home:      {title:"Voyons, sur vos propres chiffres, ce que vous laissez passer. C'est offert.", lead:"Laissez-nous vos coordonnées : un membre de l'équipe vous rappelle, en français, pour convenir d'un diagnostic — sans engagement."},
+    diagnostic:{title:"Voyons, sur vos propres chiffres, ce que vous laissez passer. C'est offert.", lead:"Laissez-nous vos coordonnées : un membre de l'équipe vous rappelle, en français, pour convenir d'un diagnostic — sans engagement."},
     middleware:{title:"Voyons l'état de vos automates ensemble. C'est offert.", lead:"Laissez-nous vos coordonnées : on vous montre le suivi de vos analyseurs sur votre propre installation — sans engagement."},
     dashboard: {title:"Pilotons vos délais ensemble. C'est offert.", lead:"Laissez-nous vos coordonnées : on vous montre vos indicateurs sur vos propres données — sans engagement."},
     assistant: {title:"Découvrez l'assistant sur vos propres cas. C'est offert.", lead:"Laissez-nous vos coordonnées : on vous montre l'assistant en situation — sans engagement."},
@@ -865,21 +797,9 @@
   // Bouton précédent/suivant du navigateur
   window.addEventListener('popstate',()=>render(currentId()));
 
-  // Sélecteur de design (prévisualisation) — bascule le thème sans recharger.
-  function setDesign(d){
-    if(d==='chaleureux') document.documentElement.removeAttribute('data-theme');
-    else document.documentElement.setAttribute('data-theme',d);
-    const u=new URL(location); u.searchParams.set('design',d); history.replaceState(null,'',u);
-    markDesign(d);
-  }
-  function markDesign(d){
-    document.querySelectorAll('#switcher button').forEach(b=>b.classList.toggle('on',b.getAttribute('data-design')===d));
-  }
-
   // Affichage initial selon l'URL demandée (deep-link depuis une pub)
   render(currentId());
   renderContact();
-  markDesign(document.documentElement.getAttribute('data-theme')||'chaleureux');
 
   // Envoi du formulaire en AJAX vers Netlify Forms (reste sur la page).
   function submitDiag(e){
